@@ -1,0 +1,31 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: WPDL-Electron Build (Non Artifacts)
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  NODE_JS_VERSION: 23.1.0
+
+jobs:
+  build:
+  
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build Project for ${{ matrix.os }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_JS_VERSION }}
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run build --if-present
