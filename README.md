@@ -42,34 +42,34 @@
 
 - ## Project Setup
 
-  ### Install
+  - ### Install
 
-  ```bash
-  $ npm install
-  ```
+    ```bash
+    $ npm install
+    ```
 
-  ### Development
+  - ### Development
 
-  ```bash
-  $ npm run dev
-  ```
+    ```bash
+    $ npm run dev
+    ```
 
-  ### Build Unpack
+  - ### Build Unpack
 
-  ```bash
-  # For Running OS
-  $npm run build:unpack
-  ```
+    ```bash
+    # For Running OS
+    $npm run build:unpack
+    ```
 
-  ### Build
+  - ### Build
 
-  ```bash
-  # For Windows
-  $ npm run build:win
+    ```bash
+    # For Windows
+    $ npm run build:win
 
-  # For macOS
-  $ npm run build:mac
+    # For macOS 
+    $ npm run build:mac
 
-  # For Linux
-  $ npm run build:linux
-  ```
+    # For Linux
+    $ npm run build:linux
+    ```
