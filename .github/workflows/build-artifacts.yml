@@ -1,0 +1,83 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: WPDL-Electron Build Artifacts
+
+on:
+  workflow_dispatch:
+
+env:
+  NODE_JS_VERSION: 23.1.0
+
+jobs:
+  test:
+    name: Build artifacts for ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js ${{ env.NODE_JS_VERSION }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_JS_VERSION }}
+        cache: 'npm'
+    - run: npm install
+
+    # Build the unpacked version common to all OS
+    - name: Build unpacked
+      run: npm run build:unpack --if-present
+
+    # OS-specific builds
+    - name: Run Linux-specific build
+      if: runner.os == 'Linux'
+      run: npm run build:linux --if-present
+
+    - name: Run macOS-specific build
+      if: runner.os == 'macOS'
+      run: npm run build:mac --if-present
+
+    - name: Run Windows-specific build
+      if: runner.os == 'Windows'
+      run: npm run build:win --if-present
+
+    # Upload unpacked artifacts for each OS
+    - name: Upload Linux unpacked artifact
+      if: runner.os == 'Linux'
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-unpacked-linux
+        path: dist/linux-unpacked
+
+    - name: Upload macOS unpacked artifact
+      if: runner.os == 'macOS'
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-unpacked-mac
+        path: dist/mac-arm64
+
+    - name: Upload Windows unpacked artifact
+      if: runner.os == 'Windows'
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-unpacked-windows
+        path: dist/win-unpacked
+
+    # Upload the artifacts dist folder
+    - name: Upload all Release artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-${{ matrix.os }}
+        path: |
+          dist/*.exe
+          dist/*.zip
+          dist/*.dmg
+          dist/*.AppImage
+          dist/*.snap
+          dist/*.deb
+          dist/*.rpm
+          dist/*.tar.gz
+          dist/*.yml
+          dist/*.blockmap
