@@ -32,6 +32,9 @@
 
 ---
 
+> [!TIP]
+> For additional information on [wp-downloader](https://github.com/MaximilianGT500/wp-downloader) source code, visit [parent repo](https://github.com/MaximilianGT500/wp-downloader)
+
 <br/>
 
 - ## Build Status
