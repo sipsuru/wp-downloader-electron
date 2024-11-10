@@ -35,8 +35,8 @@
 <br/>
 
 - ## Build Status
-
-
+  - [![WPDL-Electron Build (Non Artifacts)](https://github.com/sipsuru/wp-downloader-electron/actions/workflows/build.yml/badge.svg)](https://github.com/sipsuru/wp-downloader-electron/actions/workflows/build.yml)
+  - [![WPDL-Electron Build Artifacts](https://github.com/sipsuru/wp-downloader-electron/actions/workflows/build-artifacts.yml/badge.svg)](https://github.com/sipsuru/wp-downloader-electron/actions/workflows/build-artifacts.yml)
 
 - ## Project Setup
 
