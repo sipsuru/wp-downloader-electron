@@ -18,6 +18,9 @@
 
 ---
 
+> [!CAUTION]
+> The application cannot be used yet, cauing errors. Trying to fix soon as possible.
+
 <br/>
 
 - ## Just Use
