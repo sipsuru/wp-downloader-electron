@@ -32,7 +32,7 @@ Incorporate the software into any commercial products or services.
 Charge for the distribution, licensing, or use of the software.
 
 ## 3. Educational Use Disclaimer
-***"WP-Downloader-Electron" is intended for educational purposes only.*** Dragon Developers provides this software as a tool for study how to wrap an express app to an electron app. the  The authors do not endorse illegal activities, including but not limited to cracking, piracy, or bypassing digital protections, copyright infrignment, teaft of intellectual property, etc.
+***"WP-Downloader-Electron" is intended for educational purposes only.*** Dragon Developers provides this software as a tool for study how to wrap an express app to an electron app. The authors do not endorse illegal activities, including but not limited to cracking, piracy, or bypassing digital protections, copyright infrignment, theaft of intellectual property, etc.
 
 ## 4. No Warranty
 This software is provided "as-is" with no warranties of any kind. Dragon Developers shall not be held liable for any damages arising from the use, modification, or distribution of this software. Users are responsible for complying with all applicable laws.
