@@ -1,42 +1,40 @@
 {
   "name": "wp-downloader-electron",
   "version": "1.0.0",
-  "description": "A minimal Electron application with JavaScript",
-  "main": "./out/main/index.js",
-  "author": "example.com",
-  "homepage": "https://electron-vite.org",
+  "description": "WP-Downloader Wrapped in Electron",
+  "main": "index.js",
   "scripts": {
+    "dev": "electron index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
-    "start": "electron-vite preview",
-    "dev": "electron-vite dev",
-    "build": "electron-vite build",
     "postinstall": "electron-builder install-app-deps",
-    "build:unpack": "npm run build && electron-builder --dir",
-    "build:win": "npm run build && electron-builder --win",
-    "build:mac": "npm run build && electron-builder --mac",
-    "build:linux": "npm run build && electron-builder --linux"
+    "build:unpack": "electron-builder --dir",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux"
+  },
+  "author": "Dragon Corp",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "devDependencies": {
+    "@electron-toolkit/eslint-config": "^1.0.2",
+    "@electron-toolkit/eslint-config-prettier": "^2.0.0",
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8",
+    "eslint": "^9.14.0",
+    "install": "^0.13.0",
+    "prettier": "^3.3.3"
   },
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^3.0.0",
     "axios": "^1.7.7",
-    "electron-updater": "^6.1.7",
+    "electron-updater": "^6.3.9",
     "express": "^4.21.1",
     "jsdom": "^25.0.1",
     "jszip": "^3.10.1",
     "node-cache": "^5.1.2",
     "pug": "^3.0.3",
     "sanitize-html": "^2.13.1"
-  },
-  "devDependencies": {
-    "@electron-toolkit/eslint-config": "^1.0.2",
-    "@electron-toolkit/eslint-config-prettier": "^2.0.0",
-    "electron": "^31.0.2",
-    "electron-builder": "^24.13.3",
-    "electron-vite": "^2.3.0",
-    "eslint": "^8.57.0",
-    "prettier": "^3.3.2",
-    "vite": "^5.3.1"
   }
 }

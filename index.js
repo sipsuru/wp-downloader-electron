@@ -1,9 +1,9 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
-import { join } from 'path'
-import { electronApp, optimizer, is } from '@electron-toolkit/utils'
-import icon from '../../resources/icon.png?asset'
+const { app, shell, BrowserWindow, ipcMain } = require('electron/main')
 
-require("../../main");  // This runs the Express app in the same process
+const { join } = require('path')
+const { electronApp, optimizer } = require('@electron-toolkit/utils')
+
+require("./server");  // This runs the Express app in the same process
 
 function createWindow() {
   // Create the browser window.
@@ -12,9 +12,7 @@ function createWindow() {
     height: 770,
     show: false,
     autoHideMenuBar: true,
-    icon,
     webPreferences: {
-      preload: join(__dirname, '../preload/index.js'),
       sandbox: false
     }
   })

@@ -3,13 +3,12 @@ productName: wp-downloader-electron
 directories:
   buildResources: build
 files:
-  - '!**/.vscode/*'
-  - '!src/*'
   - '!electron.vite.config.{js,ts,mjs,cjs}'
   - '!{.eslintignore,.eslintrc.cjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}'
   - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
 asarUnpack:
-  - resources/**
+  - './resources/**/*'
+
 win:
   executableName: wp-downloader-electron
 nsis:
@@ -17,6 +16,7 @@ nsis:
   shortcutName: ${productName}
   uninstallDisplayName: ${productName}
   createDesktopShortcut: always
+
 mac:
   entitlementsInherit: build/entitlements.mac.plist
   extendInfo:
@@ -25,8 +25,10 @@ mac:
     - NSDocumentsFolderUsageDescription: Application requests access to the user's Documents folder.
     - NSDownloadsFolderUsageDescription: Application requests access to the user's Downloads folder.
   notarize: false
+
 dmg:
   artifactName: ${name}-${version}.${ext}
+
 linux:
   target:
     - AppImage
@@ -34,11 +36,15 @@ linux:
     - deb
   maintainer: electronjs.org
   category: Utility
+
 appImage:
   artifactName: ${name}-${version}.${ext}
+
 npmRebuild: false
+
 publish:
   provider: generic
   url: https://example.com/auto-updates
+
 electronDownload:
   mirror: https://npmmirror.com/mirrors/electron/

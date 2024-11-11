@@ -2,6 +2,7 @@ const pug = require("pug");
 const fs = require("fs");
 const JSZip = require("jszip");
 const axios = require("axios");
+const path = require("path");  // Import path module for Electron compatibility
 
 const WP = require("./wp");
 
@@ -10,17 +11,17 @@ class Generator {
 	static availableFormats = ["epub", "html"];
 
 	static templates = {
-		mimetype: fs.readFileSync("./templates/epub/mimetype").toString(),
-		container: fs.readFileSync("./templates/epub/META-INF/container.xml").toString(),
-		metadata: fs.readFileSync("./templates/epub/META-INF/metadata.xml.pug").toString(),
-		mainCSS: fs.readFileSync("./templates/epub/OPS/css/main.css").toString(),
-		titleCSS: fs.readFileSync("./templates/epub/OPS/css/title.css").toString(),
-		cover: fs.readFileSync("./templates/epub/OPS/cover.xhtml").toString(),
-		contentOPF: fs.readFileSync("./templates/epub/OPS/content.opf.pug").toString(),
-		titleFile: fs.readFileSync("./templates/epub/OPS/title.xhtml.pug").toString(),
-		toc: fs.readFileSync("./templates/epub/OPS/toc.ncx.pug").toString(),
-		chapter: fs.readFileSync("./templates/epub/OPS/chapter.xhtml.pug").toString(),
-		htmlv2: fs.readFileSync("./templates/htmlv2.pug").toString()
+		mimetype: fs.readFileSync(path.join(__dirname, "../templates", "epub", "mimetype")).toString(),
+		container: fs.readFileSync(path.join(__dirname, "../templates", "epub", "META-INF", "container.xml")).toString(),
+		metadata: fs.readFileSync(path.join(__dirname, "../templates", "epub", "META-INF", "metadata.xml.pug")).toString(),
+		mainCSS: fs.readFileSync(path.join(__dirname, "../templates", "epub", "OPS", "css", "main.css")).toString(),
+		titleCSS: fs.readFileSync(path.join(__dirname, "../templates", "epub", "OPS", "css", "title.css")).toString(),
+		cover: fs.readFileSync(path.join(__dirname, "../templates", "epub", "OPS", "cover.xhtml")).toString(),
+		contentOPF: fs.readFileSync(path.join(__dirname, "../templates", "epub", "OPS", "content.opf.pug")).toString(),
+		titleFile: fs.readFileSync(path.join(__dirname, "../templates", "epub", "OPS", "title.xhtml.pug")).toString(),
+		toc: fs.readFileSync(path.join(__dirname, "../templates", "epub", "OPS", "toc.ncx.pug")).toString(),
+		chapter: fs.readFileSync(path.join(__dirname, "../templates", "epub", "OPS", "chapter.xhtml.pug")).toString(),
+		htmlv2: fs.readFileSync(path.join(__dirname, "../templates", "htmlv2.pug")).toString()
 	}
 
 	static async epub(book, parts) {
@@ -43,10 +44,10 @@ class Generator {
 
 		let images = ops.folder("images");
 
-		try{
+		try {
 			let res = await axios.get(book.cover, { responseType: "arraybuffer" });
 			images.file("cover.jpg", Buffer.from(res.data));
-		}catch (e) {
+		} catch (e) {
 			return null;
 		}
 
@@ -61,7 +62,7 @@ class Generator {
 		let toc = pug.render(Generator.templates.toc, book);
 		ops.file("toc.ncx", toc);
 
-		for(let i = 0; i < parts.length; i++){
+		for (let i = 0; i < parts.length; i++) {
 			let chapter = pug.render(Generator.templates.chapter, parts[i]);
 			ops.file(`chapter${i}.xhtml`, chapter);
 		}
@@ -72,7 +73,6 @@ class Generator {
 			console.log("Generatorfehler:", e);
 			return null;
 		}
-
 	}
 
 	static async html(book, parts, langName, lang) {
@@ -83,9 +83,7 @@ class Generator {
 		let template = Generator.templates.htmlv2;
 
 		return pug.render(template, { book, parts, image, avatar, langName, lang });
-
 	}
-
 }
 
 module.exports = Generator;

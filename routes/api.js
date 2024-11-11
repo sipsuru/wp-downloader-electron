@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
+const path = require("path");
 const stream = require("stream");
 
-const WP = require("../services/wp");
-const Generator = require("../services/generator");
-const Translation = require("../services/translation");
+const WP = require(path.join(__dirname, "../services/wp"));
+const Generator = require(path.join(__dirname, "../services/generator"));
+const Translation = require(path.join(__dirname, "../services/translation"));
 
 router.get("/:id/download/:format", async (req, res) => {
-
     if (!Generator.availableFormats.includes(req.params.format)) {
         res.status(400).send({ error: "unknown_format", formats: Generator.availableFormats });
         console.log(`[${new Date().toISOString()}] Konverter: Benutzer hat versucht, die Story in "${req.params.format}" umzuwandeln`);
@@ -22,7 +22,6 @@ router.get("/:id/download/:format", async (req, res) => {
     }
 
     let parts = await WP.getParts(bookData.parts);
-
     let { lang, langName } = Translation.getTranslation(req.acceptsLanguages(Translation.langs));
 
     if (req.params.format === "epub") {
