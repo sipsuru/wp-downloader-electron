@@ -12,7 +12,7 @@
 </p>
 
 > [!NOTE]
-> This's a electron wrapper around [original source code](https://github.com/MaximilianGT500/wp-downloader) of WP-Downloader. So users don't need to install node.js, node-modules or run with cli.
+> This's a electron wrapper around [original server app](https://github.com/MaximilianGT500/wp-downloader) of WP-Downloader. So users don't need to install node.js, node-modules or run with cli.
 
 <br/>
 
