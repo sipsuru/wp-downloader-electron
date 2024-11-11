@@ -33,7 +33,7 @@
 ---
 
 > [!TIP]
-> For additional information on [wp-downloader](https://github.com/MaximilianGT500/wp-downloader) source code, visit [parent repo](https://github.com/MaximilianGT500/wp-downloader)
+> For additional information on [wp-downloader](https://github.com/MaximilianGT500/wp-downloader) source repo, visit [source repo](https://github.com/MaximilianGT500/wp-downloader)
 
 <br/>
 
@@ -61,7 +61,7 @@
 
     ```bash
     # For Running OS
-    $npm run build:unpack
+    $ npm run build:unpack
     ```
 
   - ### Build
