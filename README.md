@@ -23,11 +23,8 @@
 - ## Just Use
 
   - ### Downlod Binaries
-    You can download latest binaries from [GitHub releases]().
-
-> [!TIP]
-> You can also use hosted instance: https://wpdl.us (**Not** hosted by original owners)
-
+    You can download latest binaries from [GitHub releases](https://github.com/sipsuru/wp-downloader-electron/releases).
+    
 <br/>
 
 ---
