@@ -18,6 +18,7 @@ function createWindow() {
   })
 
   mainWindow.on('ready-to-show', () => {
+    doInjectScrollBar()
     mainWindow.show()
   })
 
@@ -29,6 +30,31 @@ function createWindow() {
   mainWindow.setContentProtection(true);
 
   mainWindow.loadURL("http://localhost:3000");
+}
+
+function doInjectScrollBar(): void {
+  const cddData = `
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #2a2a2a;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #555555;
+        border-radius: 10px;
+        border: 2px solid #2a2a2a;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #777777;
+    }`
+
+  mainWindow.webContents.insertCSS(cddData).then(() => {})
 }
 
 // This method will be called when Electron has finished
