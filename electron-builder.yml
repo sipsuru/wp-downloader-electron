@@ -1,4 +1,4 @@
-appId: com.electron.app
+appId: com.sipsuru.wpdl
 productName: wp-downloader-electron
 directories:
   buildResources: build
@@ -9,7 +9,20 @@ files:
 asarUnpack:
   - './resources/**/*'
 
+compression: "maximum"
+
 win:
+  target:
+    - nsis
+    - appx
+    - msi
+    - portable
+    - zip
+    - 7z
+  arch:
+    - x64
+    - ia32
+    - arm64
   executableName: wp-downloader-electron
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
@@ -18,12 +31,22 @@ nsis:
   createDesktopShortcut: always
 
 mac:
+  target:
+    - dmg
+    - mas
+    - pkg
+    - zip
+    - tar.gz
+  arch:
+    - x64
+    - arm64
+    - universal
   entitlementsInherit: build/entitlements.mac.plist
   extendInfo:
-    - NSCameraUsageDescription: Application requests access to the device's camera.
-    - NSMicrophoneUsageDescription: Application requests access to the device's microphone.
-    - NSDocumentsFolderUsageDescription: Application requests access to the user's Documents folder.
-    - NSDownloadsFolderUsageDescription: Application requests access to the user's Downloads folder.
+    NSCameraUsageDescription: Application requests access to the device's camera.
+    NSMicrophoneUsageDescription: Application requests access to the device's microphone.
+    NSDocumentsFolderUsageDescription: Application requests access to the user's Documents folder.
+    NSDownloadsFolderUsageDescription: Application requests access to the user's Downloads folder.
   notarize: false
 
 dmg:
@@ -34,6 +57,15 @@ linux:
     - AppImage
     - snap
     - deb
+    - rpm
+    - pacman
+    - tar.gz
+    - zip
+  arch:
+    - x64
+    - ia32
+    - armv7l
+    - arm64
   maintainer: electronjs.org
   category: Utility
 
