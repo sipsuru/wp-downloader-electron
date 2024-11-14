@@ -5,9 +5,11 @@ const { electronApp, optimizer } = require('@electron-toolkit/utils')
 
 require("./server");  // This runs the Express app in the same process
 
+let mainWindow
+
 function createWindow() {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 1000,
     height: 770,
     show: false,
@@ -32,7 +34,7 @@ function createWindow() {
   mainWindow.loadURL("http://localhost:3000");
 }
 
-function doInjectScrollBar(): void {
+function doInjectScrollBar() {
   const cddData = `
     ::-webkit-scrollbar {
         width: 8px;
@@ -54,7 +56,7 @@ function doInjectScrollBar(): void {
         background-color: #777777;
     }`
 
-  mainWindow.webContents.insertCSS(cddData).then(() => {})
+  mainWindow.webContents.insertCSS(cddData)
 }
 
 // This method will be called when Electron has finished
