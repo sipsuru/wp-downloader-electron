@@ -16,8 +16,8 @@ win:
   target:
     - target: nsis
       arch: [x64, ia32, arm64]
-    - target: appx
-      arch: [x64, ia32, arm64]
+    # - target: appx
+    #   arch: [x64, ia32, arm64]
     - target: msi
       arch: [x64, ia32, arm64]
     - target: portable
@@ -37,8 +37,8 @@ mac:
   target:
     - target: dmg
       arch: [x64, arm64, universal]
-    - target: pkg
-      arch: [x64, arm64, universal]
+    # - target: pkg
+    #   arch: [x64, arm64, universal]
     - target: zip
       arch: [x64, arm64, universal]
     - target: tar.gz
