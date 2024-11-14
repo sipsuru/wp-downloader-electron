@@ -10,19 +10,22 @@ asarUnpack:
   - './resources/**/*'
 
 compression: "maximum"
+defaultArch: x64  # Sets x64 as the default architecture
 
 win:
   target:
-    - nsis
-    - appx
-    - msi
-    - portable
-    - zip
-    - 7z
-  arch:
-    - x64
-    - ia32
-    - arm64
+    - target: nsis
+      arch: [x64, ia32, arm64]
+    - target: appx
+      arch: [x64, ia32, arm64]
+    - target: msi
+      arch: [x64, ia32, arm64]
+    - target: portable
+      arch: [x64, ia32, arm64]
+    - target: zip
+      arch: [x64, ia32, arm64]
+    - target: 7z
+      arch: [x64, ia32, arm64]
   executableName: wp-downloader-electron
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
@@ -32,15 +35,16 @@ nsis:
 
 mac:
   target:
-    - dmg
-    - mas
-    - pkg
-    - zip
-    - tar.gz
-  arch:
-    - x64
-    - arm64
-    - universal
+    - target: dmg
+      arch: [x64, arm64, universal]
+    - target: mas
+      arch: [x64, arm64, universal]
+    - target: pkg
+      arch: [x64, arm64, universal]
+    - target: zip
+      arch: [x64, arm64, universal]
+    - target: tar.gz
+      arch: [x64, arm64, universal]
   entitlementsInherit: build/entitlements.mac.plist
   extendInfo:
     NSCameraUsageDescription: Application requests access to the device's camera.
@@ -54,18 +58,20 @@ dmg:
 
 linux:
   target:
-    - AppImage
-    - snap
-    - deb
-    - rpm
-    - pacman
-    - tar.gz
-    - zip
-  arch:
-    - x64
-    - ia32
-    - armv7l
-    - arm64
+    - target: AppImage
+      arch: [x64, arm64, armv7l]
+    - target: snap
+      arch: [x64, arm64, armv7l]
+    - target: deb
+      arch: [x64, arm64, armv7l]
+    - target: rpm
+      arch: [x64, arm64, armv7l]
+    - target: pacman
+      arch: [x64, arm64, armv7l]
+    - target: tar.gz
+      arch: [x64, arm64, armv7l]
+    - target: zip
+      arch: [x64, arm64, armv7l]
   maintainer: electronjs.org
   category: Utility
 
