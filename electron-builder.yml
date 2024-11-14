@@ -37,8 +37,6 @@ mac:
   target:
     - target: dmg
       arch: [x64, arm64, universal]
-    - target: mas
-      arch: [x64, arm64, universal]
     - target: pkg
       arch: [x64, arm64, universal]
     - target: zip
