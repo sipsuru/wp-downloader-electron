@@ -57,19 +57,19 @@ dmg:
 linux:
   target:
     - target: AppImage
-      arch: [x64, arm64, armv7l, ia32]
+      arch: [x64, arm64, armv7l]
     - target: snap
-      arch: [x64, arm64, armv7l, ia32]
+      arch: [x64, arm64, armv7l]
     - target: deb
-      arch: [x64, arm64, armv7l, ia32]
+      arch: [x64, arm64, armv7l]
     - target: rpm
-      arch: [x64, arm64, armv7l, ia32]
+      arch: [x64, arm64, armv7l]
     - target: pacman
-      arch: [x64, arm64, armv7l, ia32]
+      arch: [x64, arm64, armv7l]
     - target: tar.gz
-      arch: [x64, arm64, armv7l, ia32]
+      arch: [x64, arm64, armv7l]
     - target: zip
-      arch: [x64, arm64, armv7l, ia32]
+      arch: [x64, arm64, armv7l]
   maintainer: wpdl.us
   category: Utility
 
