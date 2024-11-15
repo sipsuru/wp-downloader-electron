@@ -24,15 +24,20 @@ jobs:
     - run: npm install
 
     # OS-specific builds
-    - name: build-linux
+
+    - name: Install Snapcraft for Linux 
+      if: matrix.os == 'ubuntu-latest'
+      uses: samuelmeuli/action-snapcraft@v3
+    
+    - name: Build Linux
       if: matrix.os == 'ubuntu-latest'
       run: npm run build:linux
 
-    - name: build-mac
-      if: matrix.os == 'macos-latest'
+    - name: Build MacOS
+      if: matrix.os == 'macOs-latest'
       run: npm run build:mac
 
-    - name: build-win
+    - name: Build Windows
       if: matrix.os == 'windows-latest'
       run: npm run build:win
 
