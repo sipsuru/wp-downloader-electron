@@ -1,0 +1,44 @@
+name: WPDL-Electron Build Artifacts - Linux
+
+on:
+  workflow_dispatch:
+
+env:
+  NODE_JS_VERSION: 23.1.0
+
+jobs:
+  test:
+    name: Build artifacts for ubuntu-latest
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js ${{ env.NODE_JS_VERSION }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_JS_VERSION }}
+        cache: 'npm'
+    - run: npm install
+
+    - name: Install Snapcraft for Linux 
+      uses: samuelmeuli/action-snapcraft@v3
+    
+    - name: Build Linux
+      run: npm run build:linux
+
+    - name: Release
+      uses: softprops/action-gh-release@v2
+      with:
+        draft: true
+        files: |
+          dist/*.msi
+          dist/*.zip
+          dist/*.7z
+          dist/*.AppImage
+          dist/*.deb
+          dist/*.rpm
+          dist/*.tar.gz
+          dist/*.yml
+          dist/*.blockmap
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
