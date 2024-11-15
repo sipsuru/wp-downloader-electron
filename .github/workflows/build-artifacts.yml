@@ -1,6 +1,3 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
 name: WPDL-Electron Build Artifacts
 
 on:
@@ -26,61 +23,35 @@ jobs:
         cache: 'npm'
     - run: npm install
 
-    # Build the unpacked version common to all OS
-    # - name: Build unpacked
-    #   run: npm run build:unpack --if-present
-
     # OS-specific builds
-    - name: Run Linux-specific build
-      if: runner.os == 'Linux'
-      run: npm run build:linux --if-present
+          - name: build-linux
+        if: matrix.os == 'ubuntu-latest'
+        run: npm run build:linux
 
-    - name: Run macOS-specific build
-      if: runner.os == 'macOS'
-      run: npm run build:mac --if-present
+      - name: build-mac
+        if: matrix.os == 'macos-latest'
+        run: npm run build:mac
 
-    - name: Run Windows-specific build
-      if: runner.os == 'Windows'
-      run: npm run build:win --if-present
+      - name: build-win
+        if: matrix.os == 'windows-latest'
+        run: npm run build:win
 
-    # Upload unpacked artifacts for each OS
-    # - name: Upload Linux unpacked artifact
-    #   if: runner.os == 'Linux'
-    #   uses: actions/upload-artifact@v4
-    #   with:
-    #     name: build-unpacked-linux
-    #     path: dist/linux-unpacked
-
-    # - name: Upload macOS unpacked artifact
-    #   if: runner.os == 'macOS'
-    #   uses: actions/upload-artifact@v4
-    #   with:
-    #     name: build-unpacked-mac
-    #     path: dist/mac-arm64
-
-    # - name: Upload Windows unpacked artifact
-    #   if: runner.os == 'Windows'
-    #   uses: actions/upload-artifact@v4
-    #   with:
-    #     name: build-unpacked-windows
-    #     path: dist/win-unpacked
-
-    # Upload the artifacts dist folder
-    - name: Upload all Release artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: build-${{ matrix.os }}
-        path: dist
-          # dist/*.exe
-          # dist/*.zip
-          # dist/*.dmg
-          # dist/*.AppImage
-          # dist/*.snap
-          # dist/*.deb
-          # dist/*.rpm
-          # dist/*.tar.gz
-          # dist/*.yml
-          # dist/*.7z
-          # dist/*.msi
-          # dist/*.appx
-          # dist/*.blockmap
+      - name: release
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: true
+          files: |
+            dist/*.exe
+            dist/*.msi
+            dist/*.zip
+            dist/*.7z
+            dist/*.AppImage
+            dist/*.snap
+            dist/*.deb
+            dist/*.rpm
+            dist/*.tar.gz
+            dist/*.pkg
+            dist/*.yml
+            dist/*.blockmap
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}

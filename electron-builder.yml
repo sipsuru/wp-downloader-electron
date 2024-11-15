@@ -19,8 +19,6 @@ win:
   target:
     - target: nsis
       arch: [x64, ia32]
-    # - target: appx
-    #   arch: [x64, ia32]
     - target: msi
       arch: [x64, ia32]
     - target: portable
@@ -50,20 +48,13 @@ dmg:
 
 linux:
   target:
-    - target: AppImage
-      arch: [x64, arm64, armv7l]
-    - target: snap
-      arch: [x64, arm64, armv7l]
-    - target: deb
-      arch: [x64, arm64, armv7l]
-    - target: rpm
-      arch: [x64, arm64, armv7l]
-    - target: pacman
-      arch: [x64, arm64, armv7l]
-    - target: tar.gz
-      arch: [x64, arm64, armv7l]
-    - target: zip
-      arch: [x64, arm64, armv7l]
+    - AppImage
+    - snap
+    - deb
+    - rpm
+    - pacman
+    - tar.gz
+    - zip
   maintainer: wpdl.us
   category: Utility
 
