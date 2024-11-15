@@ -41,17 +41,6 @@ jobs:
       with:
         draft: true
         files: |
-          dist/*.exe
-          dist/*.msi
-          dist/*.zip
-          dist/*.7z
-          dist/*.AppImage
-          dist/*.snap
-          dist/*.deb
-          dist/*.rpm
-          dist/*.tar.gz
-          dist/*.pkg
-          dist/*.yml
-          dist/*.blockmap
+          dist/**/*.{exe,msi,zip,7z,AppImage,snap,deb,rpm,tar.gz,pkg,yml,blockmap}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
