@@ -24,34 +24,34 @@ jobs:
     - run: npm install
 
     # OS-specific builds
-          - name: build-linux
-        if: matrix.os == 'ubuntu-latest'
-        run: npm run build:linux
+    - name: build-linux
+      if: matrix.os == 'ubuntu-latest'
+      run: npm run build:linux
 
-      - name: build-mac
-        if: matrix.os == 'macos-latest'
-        run: npm run build:mac
+    - name: build-mac
+      if: matrix.os == 'macos-latest'
+      run: npm run build:mac
 
-      - name: build-win
-        if: matrix.os == 'windows-latest'
-        run: npm run build:win
+    - name: build-win
+      if: matrix.os == 'windows-latest'
+      run: npm run build:win
 
-      - name: release
-        uses: softprops/action-gh-release@v1
-        with:
-          draft: true
-          files: |
-            dist/*.exe
-            dist/*.msi
-            dist/*.zip
-            dist/*.7z
-            dist/*.AppImage
-            dist/*.snap
-            dist/*.deb
-            dist/*.rpm
-            dist/*.tar.gz
-            dist/*.pkg
-            dist/*.yml
-            dist/*.blockmap
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+    - name: release
+      uses: softprops/action-gh-release@v2
+      with:
+        draft: true
+        files: |
+          dist/*.exe
+          dist/*.msi
+          dist/*.zip
+          dist/*.7z
+          dist/*.AppImage
+          dist/*.snap
+          dist/*.deb
+          dist/*.rpm
+          dist/*.tar.gz
+          dist/*.pkg
+          dist/*.yml
+          dist/*.blockmap
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
