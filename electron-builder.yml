@@ -2,10 +2,13 @@ appId: com.sipsuru.wpdl
 productName: wp-downloader-electron
 directories:
   buildResources: build
+  output: dist/${os}-${arch}
+
 files:
   - '!electron.vite.config.{js,ts,mjs,cjs}'
   - '!{.eslintignore,.eslintrc.cjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}'
   - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
+
 asarUnpack:
   - './resources/**/*'
 
@@ -15,17 +18,17 @@ defaultArch: x64  # Sets x64 as the default architecture
 win:
   target:
     - target: nsis
-      arch: [x64, ia32, arm64]
+      arch: [x64, ia32]
     # - target: appx
-    #   arch: [x64, ia32, arm64]
+    #   arch: [x64, ia32]
     - target: msi
-      arch: [x64, ia32, arm64]
+      arch: [x64, ia32]
     - target: portable
-      arch: [x64, ia32, arm64]
+      arch: [x64, ia32]
     - target: zip
-      arch: [x64, ia32, arm64]
+      arch: [x64, ia32]
     - target: 7z
-      arch: [x64, ia32, arm64]
+      arch: [x64, ia32]
   executableName: wp-downloader-electron
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
@@ -76,7 +79,7 @@ linux:
 appImage:
   artifactName: ${name}-${version}.${ext}
 
-npmRebuild: false
+npmRebuild: true
 
 publish:
   provider: generic
