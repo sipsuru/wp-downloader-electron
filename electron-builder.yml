@@ -17,15 +17,15 @@ defaultArch: x64  # Sets x64 as the default architecture
 win:
   target:
     - target: nsis
-      arch: [x64, ia32]
+      arch: [x64, ia32, arm64]
     - target: msi
-      arch: [x64, ia32]
+      arch: [x64, ia32, arm64]
     - target: portable
-      arch: [x64, ia32]
+      arch: [x64, ia32, arm64]
     - target: zip
-      arch: [x64, ia32]
+      arch: [x64, ia32, arm64]
     - target: 7z
-      arch: [x64, ia32]
+      arch: [x64, ia32, arm64]
   executableName: wp-downloader-electron
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
