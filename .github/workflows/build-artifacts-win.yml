@@ -1,4 +1,4 @@
-name: WPDL-Electron Build Artifacts - Linux
+name: WPDL-Electron Build Artifacts - Win
 
 on:
   workflow_dispatch:
@@ -8,8 +8,8 @@ env:
 
 jobs:
   test:
-    name: Build artifacts for ubuntu-latest
-    runs-on: ubuntu-latest
+    name: Build artifacts for windows-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v4
@@ -20,11 +20,8 @@ jobs:
         cache: 'npm'
     - run: npm install
 
-    - name: Install Snapcraft for Linux 
-      uses: samuelmeuli/action-snapcraft@v3
-    
-    - name: Build Linux
-      run: npm run build:linux
+    - name: Build Win
+      run: npm run build:win
 
     - name: Release
       uses: softprops/action-gh-release@v2
