@@ -69,4 +69,4 @@ publish:
   url: https://example.com/auto-updates
 
 electronDownload:
-  mirror: https://github.com/electron/electron/releases/
+  mirror: https://github.com/electron/electron/releases/tag/
