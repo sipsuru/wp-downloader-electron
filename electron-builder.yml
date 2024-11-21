@@ -20,8 +20,6 @@ win:
       arch: [x64, ia32, arm64]
     - target: msi
       arch: [x64, ia32, arm64]
-    - target: portable
-      arch: [x64, ia32, arm64]
     - target: zip
       arch: [x64, ia32, arm64]
     - target: 7z
