@@ -12,7 +12,7 @@ asarUnpack:
   - './resources/**/*'
 
 compression: "maximum"
-defaultArch: x64  # Sets x64 as the default architecture
+# defaultArch: x64  # Sets x64 as the default architecture
 
 win:
   target:
