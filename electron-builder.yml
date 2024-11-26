@@ -12,21 +12,23 @@ asarUnpack:
   - './resources/**/*'
 
 compression: "maximum"
-# defaultArch: x64  # Sets x64 as the default architecture
+defaultArch: x64  # Sets x64 as the default architecture
 
 win:
   target:
     - target: nsis
-      arch: [x64, ia32, arm64]
+      arch: [x64, ia32]
     - target: msi
-      arch: [x64, ia32, arm64]
+      arch: [x64, ia32]
+    - target: portable
+      arch: [x64, ia32]
     - target: zip
-      arch: [x64, ia32, arm64]
+      arch: [x64, ia32]
     - target: 7z
-      arch: [x64, ia32, arm64]
+      arch: [x64, ia32]
   executableName: wp-downloader-electron
 nsis:
-  artifactName: ${name}-${version}-setup-${arch}.${ext}
+  artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}
   uninstallDisplayName: ${productName}
   createDesktopShortcut: always
@@ -41,7 +43,7 @@ mac:
   notarize: false
 
 dmg:
-  artifactName: ${name}-${version}-${arch}.${ext}
+  artifactName: ${name}-${version}.${ext}
 
 linux:
   target:
@@ -60,7 +62,7 @@ linux:
   category: Utility
 
 appImage:
-  artifactName: ${name}-${version}-${arch}.${ext}
+  artifactName: ${name}-${version}.${ext}
 
 npmRebuild: true
 
